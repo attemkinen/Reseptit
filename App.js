@@ -15,7 +15,7 @@ export default function App() {
   const [recipes, setRecipes] = useState([]);
 
   const getRecipes = () => {
-    fetch(`https://www.themealdb.com/api/json/v1/1/filter.php?i=${keyword}`)
+    fetch(`${process.env.EXPO_PUBLIC_API_URL}/filter.php?i=${keyword}`)
       .then((response) => response.json())
       .then((data) => {
         if (data.meals) {
@@ -25,9 +25,10 @@ export default function App() {
         }
       })
       .catch((error) => {
-        console.log("error");
+        console.log("Error:", error);
       });
   };
+  
 
   return (
     <View style={styles.container}>
